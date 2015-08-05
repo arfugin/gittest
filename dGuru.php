@@ -63,29 +63,22 @@ $centerPages .= '&nbsp; <a href="' . $_SERVER
 // This line sets the "LIMIT" range... the 2 values we place to choose a range of rows from database in our query
 $limit = 'LIMIT ' .($pn - 1) * $itemsPerPage .',' .
 $itemsPerPage;
-// Now we are going to run the same query as above but this time add $limit onto the end of the SQL syntax
-// $sql2 is what we will use to fuel our while loop statement below
 $query = "SELECT * FROM guru ORDER BY nip DESC $limit";
 $result= mysql_query($query);
-//////////////////////////////// END Adam's Pagination Logic ////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////// Adam's Pagination Display Setup /////////////////////////////////////////////////////////////////////
+
 $paginationDisplay = ""; // Initialize the pagination output variable
-// This code runs only if the last page variable is ot equal to 1, if it is only 1 page we require no paginated links to display
 if ($lastPage != "1"){
-// This shows the user what page they are on, and the total number of pages
 $paginationDisplay .= 'Page <strong>' . $pn . '</
 strong> of ' . $lastPage. '&nbsp; &nbsp;  &nbsp; ';
-// If we are not on page 1 we can place the Back button
 if ($pn != 1) {
 $previous = $pn - 1;
 $paginationDisplay .= '&nbsp; <a href="' .
 $_SERVER['PHP_SELF'] . '?pn=' . $previous . '"> Back</
 a> ';
 }
-// Lay in the clickable numbers display here between the Back and Next links
 $paginationDisplay .= '<span
 class="paginationNumbers">' . $centerPages . '</span>';
-// If we are not on the very last page we can place the Next button
+
 if ($pn != $lastPage) {
 $nextPage = $pn + 1;
 $paginationDisplay .= '&nbsp; <a href="' .
